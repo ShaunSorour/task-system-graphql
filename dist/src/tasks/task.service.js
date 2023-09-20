@@ -29,6 +29,17 @@ class TaskService {
             return yield this.taskRepository.save(task);
         });
     }
+    getUserTasksByCompletionStatus(userId, completed) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const queryBuilder = this.taskRepository.createQueryBuilder('task');
+            queryBuilder.where('task.user = :userId', { userId });
+            if (completed !== undefined) {
+                queryBuilder.andWhere('task.completed = :completed', { completed });
+            }
+            const userTasksFilteredByStatus = yield queryBuilder.getMany();
+            return userTasksFilteredByStatus;
+        });
+    }
     getTaskById(id) {
         return __awaiter(this, void 0, void 0, function* () {
             const task = yield this.taskRepository.createQueryBuilder('task')

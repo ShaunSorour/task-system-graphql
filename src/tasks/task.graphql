@@ -31,4 +31,5 @@ type Mutation {
 
 type Query {
     allTasks: [Task]
+    userTasksByCompletionStatus(status: Boolean!): [Task]
 }
