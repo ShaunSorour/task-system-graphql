@@ -42,6 +42,7 @@ type Mutation {
 type Query {
   currentUser: JwtPayload
   allTasks: [Task]
+  userTasksByCompletionStatus(status: Boolean!): [Task]
 }
 
 type Task {

@@ -81,6 +81,12 @@ export type Query = {
   __typename?: 'Query';
   allTasks?: Maybe<Array<Maybe<Task>>>;
   currentUser?: Maybe<JwtPayload>;
+  userTasksByCompletionStatus?: Maybe<Array<Maybe<Task>>>;
+};
+
+
+export type QueryUserTasksByCompletionStatusArgs = {
+  status: Scalars['Boolean']['input'];
 };
 
 export type SigninInput = {
@@ -253,6 +259,7 @@ export type MutationResolvers<ContextType = MyContext, ParentType extends Resolv
 export type QueryResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
   allTasks?: Resolver<Maybe<Array<Maybe<ResolversTypes['Task']>>>, ParentType, ContextType>;
   currentUser?: Resolver<Maybe<ResolversTypes['JwtPayload']>, ParentType, ContextType>;
+  userTasksByCompletionStatus?: Resolver<Maybe<Array<Maybe<ResolversTypes['Task']>>>, ParentType, ContextType, RequireFields<QueryUserTasksByCompletionStatusArgs, 'status'>>;
 }>;
 
 export type TaskResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Task'] = ResolversParentTypes['Task']> = ResolversObject<{

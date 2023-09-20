@@ -56,6 +56,12 @@ exports.taskResolvers = {
                 const allTasks = yield task_service_1.taskService.getAllTasks();
                 return allTasks;
             });
-        }
+        },
+        userTasksByCompletionStatus(parent, { status }, context) {
+            return __awaiter(this, void 0, void 0, function* () {
+                const userTasksFilteredByStatus = yield task_service_1.taskService.getUserTasksByCompletionStatus(co, status);
+                return userTasksFilteredByStatus;
+            });
+        },
     }
 };

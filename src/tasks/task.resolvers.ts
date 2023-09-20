@@ -48,6 +48,13 @@ export const taskResolvers: Resolvers = {
             const allTasks = await taskService.getAllTasks();
 
             return allTasks;
-        }
+        },
+
+        async userTasksByCompletionStatus(parent, { status }, context) {
+            const userTasksFilteredByStatus = await taskService.getUserTasksByCompletionStatus(context.currentUser.userId, status);
+            
+            return userTasksFilteredByStatus;
+          },
+
     }
 }
