@@ -12,7 +12,7 @@ Basic task management server using:
 
 ## Screenshots
 
-<img src="./assets/doc.png" alt="Screenshot" width="500" height="800">
+<img src="./src/assets/doc.png" alt="Screenshot" width="500" height="800">
 
 
 ## Getting started
