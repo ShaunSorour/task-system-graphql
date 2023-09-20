@@ -3,9 +3,11 @@ import express from 'express'
 import http from 'http'
 import { JwtPayload, Resolvers } from "./__generated__/resolvers-types";
 import { readFileSync } from "fs";
+import { authResolvers } from './auth/auth.resolvers';
 import jwt from 'jsonwebtoken'
 import { AppDataSource } from "./auth/user/app-data.source";
 import { mergeResolvers } from "@graphql-tools/merge";
+import { taskResolvers } from './tasks/task.resolvers';
 
 
 export interface MyContext extends ExpressContext {
@@ -52,6 +54,7 @@ export class AppModule {
 
 export const appModule = new AppModule(
     mergeResolvers([
-      
+        authResolvers,
+        taskResolvers
     ])
 )
