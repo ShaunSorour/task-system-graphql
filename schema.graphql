@@ -1,0 +1,74 @@
+# generated - do not edit #
+
+type User {
+  id: Int!
+  email: String!
+  firstName: String!
+  lastName: String!
+  tasks: [Task!]!
+}
+
+input SignupInput {
+  email: String!
+  password: String!
+  firstName: String!
+  lastName: String!
+}
+
+input SigninInput {
+  email: String!
+  password: String!
+}
+
+type AuthResponse {
+  user: User!
+  jwt: String!
+}
+
+type JwtPayload {
+  email: String!
+  userId: Int!
+}
+
+type Mutation {
+  signup(input: SignupInput!): AuthResponse!
+  signin(input: SigninInput!): AuthResponse!
+  createTask(input: CreateTaskInput!): Task
+  updateTask(input: UpdateTaskInput!): Task
+  deleteTask(input: DeleteTaskInput!): Task
+  completeTask(input: completeTaskInput!): Task
+}
+
+type Query {
+  currentUser: JwtPayload
+  allTasks: [Task]
+}
+
+type Task {
+  id: Int!
+  title: String!
+  completed: Boolean!
+  user: User!
+}
+
+input CreateTaskInput {
+  title: String!
+}
+
+input UpdateTaskInput {
+  taskId: Int!
+  updatedTitle: String!
+}
+
+input DeleteTaskInput {
+  taskId: Int!
+}
+
+input completeTaskInput {
+  taskId: Int!
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+}
