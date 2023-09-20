@@ -21,10 +21,30 @@ export class TaskService {
         return await this.taskRepository.save(task)
     }
 
+    async getTaskById(id: number) {
+        const task = await this.taskRepository.createQueryBuilder('task')
+            .select('task')
+            .addSelect('task.id')
+            .select().where('id = :id', { id }).getOne()
+
+        return task
+    }
+
     async getAllTasks() {
         const allTasks = await this.taskRepository.find();
 
         return allTasks;
+    }
+
+    async updateTask(id: number, updatedTitle: string) {
+        const existingTask = await taskService.getTaskById(id);
+        if (!existingTask) { throw new GraphQLError('Task not found'); }
+
+        if (updatedTitle) {
+            existingTask.title = updatedTitle;
+        }
+
+        return await this.taskRepository.save(existingTask);
     }
 }
 

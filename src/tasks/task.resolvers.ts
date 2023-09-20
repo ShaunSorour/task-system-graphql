@@ -22,6 +22,12 @@ export const taskResolvers: Resolvers = {
             const task = await taskService.createTask(input, context.currentUser.userId);
 
             return task;
+        },
+        async updateTask(parent, { input }, context) {
+            checkAuthorization(context);
+            const updatedTask = await taskService.updateTask(input.taskId, input.updatedTitle);
+
+            return updatedTask;
         }
     },
 
