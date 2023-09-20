@@ -10,9 +10,9 @@ Basic task management server using:
 - JWT Auth
 
 
-## Screenshots
+## Document preview
 
-<img src="./src/assets/doc.png" alt="Screenshot" width="500" height="800">
+<img src="./src/assets/doc.png" alt="Screenshot" width="600" height="600">
 
 
 ## Getting started
