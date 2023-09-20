@@ -34,6 +34,12 @@ export const taskResolvers: Resolvers = {
             const deletedTask = await taskService.deleteTask(input.taskId);
 
             return deletedTask;
+        },
+        async completeTask(parent, { input }, context) {
+            checkAuthorization(context);
+            const completedTask = await taskService.completeTask(input.taskId);
+
+            return completedTask;
         }
     },
 

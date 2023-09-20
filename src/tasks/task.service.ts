@@ -47,6 +47,15 @@ export class TaskService {
         return await this.taskRepository.save(existingTask);
     }
 
+    async completeTask(id: number) {
+        const existingTask = await taskService.getTaskById(id);
+        if (!existingTask) { throw new GraphQLError('Task not found'); }
+
+        existingTask.completed = true;
+
+        return await this.taskRepository.save(existingTask);
+    }
+
     async deleteTask(id: number) {
         const existingTask = await taskService.getTaskById(id);
         if (!existingTask) { throw new GraphQLError('Task not found'); }
