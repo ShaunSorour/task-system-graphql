@@ -20,6 +20,12 @@ export class TaskService {
 
         return await this.taskRepository.save(task)
     }
+
+    async getAllTasks() {
+        const allTasks = await this.taskRepository.find();
+
+        return allTasks;
+    }
 }
 
 export const taskService = new TaskService(AppDataSource.getRepository(Task))

@@ -26,6 +26,10 @@ export const taskResolvers: Resolvers = {
     },
 
     Query: {
+        async allTasks(parent, args, context) {
+            const allTasks = await taskService.getAllTasks();
 
+            return allTasks;
+        }
     }
 }
