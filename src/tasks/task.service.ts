@@ -46,6 +46,18 @@ export class TaskService {
 
         return await this.taskRepository.save(existingTask);
     }
+
+    async deleteTask(id: number) {
+        const existingTask = await taskService.getTaskById(id);
+        if (!existingTask) { throw new GraphQLError('Task not found'); }
+
+        // remember deleted task
+        const deletedTask = { ...existingTask };
+
+        await this.taskRepository.remove(existingTask);
+
+        return deletedTask;
+    }
 }
 
 export const taskService = new TaskService(AppDataSource.getRepository(Task))

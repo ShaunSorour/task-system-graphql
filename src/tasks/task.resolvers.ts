@@ -28,6 +28,12 @@ export const taskResolvers: Resolvers = {
             const updatedTask = await taskService.updateTask(input.taskId, input.updatedTitle);
 
             return updatedTask;
+        },
+        async deleteTask(parent, { input }, context) {
+            checkAuthorization(context);
+            const deletedTask = await taskService.deleteTask(input.taskId);
+
+            return deletedTask;
         }
     },
 
